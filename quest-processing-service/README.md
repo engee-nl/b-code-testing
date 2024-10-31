@@ -96,7 +96,7 @@ quest-processing-service/
 To run the FastAPI application, use the following command:
 
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload --timeout-keep-alive 180
+uvicorn app.main:app --host 0.0.0.0 --port 8003 --reload --timeout-keep-alive 180
 ```
 
 ## Using Docker
