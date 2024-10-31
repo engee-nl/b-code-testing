@@ -3,6 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+class UserStatus(PyEnum):
+    NEW = "new"
+    NOT_NEW = "not_new"
+    BANNED = "banned"
+
 class User(Base):
     __tablename__ = "users"
     user_id = Column(Integer, primary_key=True, index=True)
@@ -10,4 +15,4 @@ class User(Base):
     hashed_password = Column(String)
     gold = Column(Integer, default=0)
     diamond = Column(Integer, default=0)
-    status = Column(Integer, default=0)
+    status = Column(Enum(UserStatus), default=UserStatus.NEW)
