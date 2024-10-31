@@ -32,6 +32,7 @@ user-auth-service/
 │ └── main.py                # Main FastAPI app 
 ├── Dockerfile               # Docker setup for the service 
 ├── requirements.txt         # Project dependencies 
+├── .env                     # Environment variables 
 └── kubernetes/ 
   ├── deployment.yaml        # Kubernetes deployment configuration 
   └── service.yaml           # Kubernetes service configuration 
@@ -62,6 +63,7 @@ user-auth-service/
     QUEST_PROC_SERVICE_URL="http://127.0.0.1:8003/api/v1/track"
     QUEST_CATA_SERVICE_URL="http://127.0.0.1:8002/api/v1/quest"
     USER_AUTH_SERVICE_URL="http://127.0.0.1:8001/api/v1/auth"
+    ACCESS_TOKEN_EXPIRE_MINUTES=120
    ```
 
 ## Running the Application
