@@ -4,7 +4,7 @@ This assignment consists of three separate projects: three back-end projects bui
 A demo section is included at the end of this README.
 
 # Task
-- **<API Request and DB Query>**
+- **[API Request and DB Query]**
 Given the DB schema (see below) create an endpoint for the signup request to handle a ‘sign-in three-times’ quest. 
 You should keep track of the middle actions that happen before completing a quest. 
 
