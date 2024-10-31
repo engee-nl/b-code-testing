@@ -22,7 +22,7 @@ If I had access to the necessary servers and time, I would set up the architectu
 - **Redis Caching for Quest Catalog Service**: Use Redis to cache frequently requested quest data, minimizing database queries and reducing latency for high-traffic requests. This improves the performance and scalability of the Quest Catalog Service by serving cached responses when possible. 
 - **JWT Token for Authentication Across Services**: Use JWT (JSON Web Tokens) to authenticate requests across all services, ensuring secure, token-based access. Each service validates JWT tokens on incoming requests to enforce security and user authentication consistently.
 
-Currently, for the demo all projects are implemented on a single server (AWS EC2 t2.micro) because I don't have separate servers available.
+Currently, for the demo, all projects are deployed on a single server (AWS EC2 t2.micro) due to limited availability of separate servers. Only the back-end components (a total of 3) are complete and available for testing.
 
 ![Server architecture](server-architecture.drawio.png)
 
