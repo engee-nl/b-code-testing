@@ -7,6 +7,9 @@ A demo section is included at the end of this README.
 
 If I had access to the necessary servers and time, I would set up the architecture as outlined below. This design is based on the following considerations:
 - **Traffic distribution**: Using AWS ECS (or EKS), along with Fargate, helps evenly distribute traffic and optimize resource utilization. 
+- **gRPC Communication**: Implement gRPC for efficient, low-latency communication between the Quest Catalog Service and Quest Processing Service. This setup supports high-throughput data exchanges, which is especially useful for retrieving quest details and ensuring real-time interactions between services.
+- **Redis Caching for Quest Catalog Service**: Use Redis to cache frequently requested quest data, minimizing database queries and reducing latency for high-traffic requests. This improves the performance and scalability of the Quest Catalog Service by serving cached responses when possible.
+- **JWT Token for Authentication Across Services**: Use JWT (JSON Web Tokens) to authenticate requests across all services, ensuring secure, token-based access. Each service validates JWT tokens on incoming requests to enforce security and user authentication consistently.
 
 ![Server architecture](server-architecture.drawio.png)
 
