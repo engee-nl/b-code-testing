@@ -163,9 +163,9 @@ Deploying this project with Kubernetes allows you to manage and scale the applic
    kubectl delete -f kubernetes/
    ```
 
-## Using AWS ECR and Deploying with ECS or EKS (recommended)
+## Using AWS ECR and Deploying with ECS or EKS
 AWS ECR allows you to store your Docker images, which can be deployed on ECS or EKS for scalable management. Here is how to deploy:
-1. **Push the Docker image to ECR**:
+**Push the Docker image to ECR**:
    - **Authenticate** Docker to your ECR registry:
    ```
    aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<region>.amazonaws.com
@@ -178,11 +178,14 @@ AWS ECR allows you to store your Docker images, which can be deployed on ECS or 
    ```
    docker push <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
    ```
-
+&nbsp;
+&nbsp;
 **Deploy the image on ECS (Elastic Container Service)**:
    - **Create a new ECS task definition** or update an existing one to use the pushed image from ECR.
    - **Launch the service** in an ECS cluster and configure the desired task scaling.
 
+&nbsp;
+&nbsp;
 **Deploy on EKS (Elastic Kubernetes Service)**:
    - Ensure the EKS cluster is configured to pull from ECR, and update the Kubernetes deployment YAML to point to the ECR image:
    ```
