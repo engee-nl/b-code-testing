@@ -5,7 +5,11 @@ A demo section is included at the end of this README.
 
 # Task
 - **<API Request and DB Query>**
-Given the DB schema (see below) create an endpoint for the signup request to handle a ‘sign-in three-times’ quest. You should keep track of the middle actions that happen before completing a quest. In particular, suppose there is a 'sign-in-three-times' quest. This quest gives as reward 10 diamonds if the user logs in 3 times, and you can only receive a reward manually (claiming rewards is out of the scope), and you can get this reward up to 2 times. In this case, it has false auto-claim and 3 streaks and 2 duplication.
+Given the DB schema (see below) create an endpoint for the signup request to handle a ‘sign-in three-times’ quest. 
+You should keep track of the middle actions that happen before completing a quest. 
+
+In particular, suppose there is a 'sign-in-three-times' quest. 
+This quest gives as reward 10 diamonds if the user logs in 3 times, and you can only receive a reward manually (claiming rewards is out of the scope), and you can get this reward up to 2 times. In this case, it has false auto-claim and 3 streaks and 2 duplication.
 
 ## Server architecture
 
