@@ -88,7 +88,7 @@ quest-catalog-service/
   - **Request**: `{ "quest_name": "string" }`
   - **Response**: `Quest information including name, streak, duplication, auto-claim status, and rewards.`
   
-- **Protected Routes**:
+- **`Protected Routes`**:
   - All routes require a Bearer JWT token in the `Authorization` header in the format: `Bearer <token>`.
 
 ## Running the Application

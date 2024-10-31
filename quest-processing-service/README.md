@@ -88,7 +88,7 @@ quest-processing-service/
   - **Request Body**: `{ "quest_name": "string" }`
   - **Response**: `{ "message": "Reward claimed successfully", "reward": { "item": "string", "qty": "int" } }`
   
-- **Protected Routes**:
+- **`Protected Routes`**:
   - All routes require a Bearer JWT token in the `Authorization` header in the format: `Bearer <token>`.
 
 ## Running the Application
