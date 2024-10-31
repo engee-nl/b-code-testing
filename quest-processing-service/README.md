@@ -224,6 +224,7 @@ AWS ECR allows you to store your Docker images, which can be deployed on ECS or 
 ## Technologies Used
 - FastAPI: Web framework for building APIs.
 - gRPC: Communication protocol for efficient service-to-service interactions.
+- SQLAlchemy: ORM for interacting with the PostgreSQL database.
 - PostgreSQL: Database for storing user quest and reward data.
 - Redis: Cache for frequently requested quest data.
 - JWT: Token-based authentication to secure access.

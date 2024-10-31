@@ -19,7 +19,7 @@ async def signup(user: UserCreate, db: Session = Depends(get_session_local)):
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
     user = create_user(db=db, user=user)
-    access_token = create_access_token(data={"sub": user.user_name, "user_id": db_user.user_id})
+    access_token = create_access_token(data={"sub": user.user_name, "user_id": user.user_id})
 
     # Notify Quest Processing Service about sign-up event
     async with httpx.AsyncClient() as client:
