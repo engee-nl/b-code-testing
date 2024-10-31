@@ -66,6 +66,18 @@ user-auth-service/
     ACCESS_TOKEN_EXPIRE_MINUTES=120
    ```
 
+## API Endpoints
+
+- **`POST /api/v1/auth/signup`**
+  - **Description**: Register a new user.
+  - **Request Body**: `{ "username": "string", "password": "string" }`
+  - **Response**: Returns a success message and JWT token if registration is successful.
+
+- **`POST /api/v1/auth/signin`**
+  - **Description**: Authenticate a user and issue a JWT token.
+  - **Request Body**: `{ "username": "string", "password": "string" }`
+  - **Response**: Returns a JWT token and user details if login is successful.
+
 ## Running the Application
 
 To run the FastAPI application, use the following command:
@@ -74,7 +86,7 @@ To run the FastAPI application, use the following command:
 uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload --timeout-keep-alive 180
 ```
 
-## Using Docker
+## Using Docker (not recommended)
 
 This project can be easily run using Docker. Follow the steps below to get started:
 
@@ -152,8 +164,8 @@ Deploying this project with Kubernetes allows you to manage and scale the applic
    kubectl delete -f kubernetes/
    ```
 
-## Using AWS ECR and Deploying with ECS or EKS
-AWS ECR allows you to store your Docker images, which can be deployed on ECS or EKS for scalable management. Here’s how to deploy:
+## Using AWS ECR and Deploying with ECS or EKS (recommended)
+AWS ECR allows you to store your Docker images, which can be deployed on ECS or EKS for scalable management. Here is how to deploy:
 
 ## Technologies Used
 - FastAPI
