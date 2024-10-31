@@ -7,4 +7,5 @@ python-jose
 passlib
 pydantic-settings
 psycopg2-binary
+grpcio
 grpcio-tools
