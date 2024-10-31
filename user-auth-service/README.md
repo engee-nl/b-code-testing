@@ -30,12 +30,12 @@ user-auth-service/
 │ ├── services/ 
 │ │    └── user_service.py   # Service functions for user operations 
 │ └── main.py                # Main FastAPI app 
+├── kubernetes/ 
+│ ├── deployment.yaml        # Kubernetes deployment configuration 
+│ └── service.yaml           # Kubernetes service configuration 
 ├── Dockerfile               # Docker setup for the service 
 ├── requirements.txt         # Project dependencies 
-├── .env                     # Environment variables 
-└── kubernetes/ 
-  ├── deployment.yaml        # Kubernetes deployment configuration 
-  └── service.yaml           # Kubernetes service configuration 
+└── .env                     # Environment variables file 
 ```
 
 ## Installation
@@ -108,8 +108,52 @@ This project can be easily run using Docker. Follow the steps below to get start
    ```
    docker rm user-auth-service
    ```
-## Using Kubernetes
-  - Deploy: `kubectl apply -f kubernetes/deployment.yaml`
+
+## Using Kubernetes (not recommended)
+
+Deploying this project with Kubernetes allows you to manage and scale the application efficiently. Follow these steps to get started:
+
+1. **Set up the Kubernetes configuration**:
+   Ensure you have the necessary Kubernetes deployment and service configuration files (e.g., deployment.yaml and service.yaml) in the kubernetes/ directory.
+
+2. **Deploy the application**: 
+   Apply the configuration files by running the following command in the root directory:
+
+   ```
+   kubectl apply -f kubernetes/
+   ```
+
+3. **Monitor the deployment**: 
+   You can check the status of your pods and services with:
+
+   ```
+   kubectl get pods
+   kubectl get services
+   ```
+
+4. **Access the application**: 
+   If using a LoadBalancer service, access the application via the external IP provided by the LoadBalancer. Use the following command to get the external IP:
+
+   ```
+   kubectl get services
+   ```
+
+5. **Scale the application (optional)**:
+   To scale the application, use the following command:
+
+   ```
+   kubectl scale deployment <deployment-name> --replicas=<number-of-replicas>
+   ```
+
+6. **Delete the deployment (optional)**:
+   If you want to remove the deployment, use:
+
+   ```
+   kubectl delete -f kubernetes/
+   ```
+
+## Using AWS ECR and Deploying with ECS or EKS
+AWS ECR allows you to store your Docker images, which can be deployed on ECS or EKS for scalable management. Here’s how to deploy:
 
 ## Technologies Used
 - FastAPI
