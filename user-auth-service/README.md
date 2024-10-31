@@ -14,21 +14,75 @@ It is designed to securely handle user credentials and issue tokens for authenti
 
 
 ## Installation
-1. Clone the repository.
-2. Install dependencies: `pip install -r requirements.txt`.
 
-## Environment File
-Create a `.env` file in the project root with the following variables:
-DATABASE_URL=your-database-url 
-SECRET_KEY=your-secret-key 
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/engee-nl/b-code-testing.git
+   cd user-auth-service
+   ```
+
+2. Create a virtual environment and activate it:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install the required packages:
+   ```bash
+   pip install -r app/requirements.txt
+   ```
+
+4. Create a `.env` file with your environment variables:
+   ```plaintext
+    DATABASE_ONE_URL="REDACTED"
+    QUEST_PROC_SERVICE_URL="http://127.0.0.1:8003/api/v1/track"
+    QUEST_CATA_SERVICE_URL="http://127.0.0.1:8002/api/v1/quest"
+    USER_AUTH_SERVICE_URL="http://127.0.0.1:8001/api/v1/auth"
+   ```
 
 ## Running the Application
-- **Locally**: Run `uvicorn app.main:app --reload --port 8001`.
-- **Using Docker**:
-  - Build: `docker build -t user-auth-service .`
-  - Run: `docker run -p 8000:80 user-auth-service`
-- **Using Kubernetes**:
+
+To run the FastAPI application, use the following command:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload --timeout-keep-alive 180
+```
+
+## Using Docker
+
+This project can be easily run using Docker. Follow the steps below to get started:
+
+1. **Build the Docker image**:
+   Build the Docker image: Navigate to the root of the project directory (where the Dockerfile is located) and run the following command:
+
+   ```
+   docker build -t user-auth-service-image .
+   ```
+
+2. **Run the Docker container**:
+   After the image is built, you can run the container using the following command:
+
+   ```
+   docker run -d --name user-auth-service -p 8001:8001 user-auth-service-image
+   ```
+
+3. **Access the application**:
+   Once the container is running, you can access the application at http://localhost:8001/docs to interact with the API documentation.
+
+4. **Stop the container**:
+   To stop the container, use the following command:
+
+   ```
+   docker stop user-auth-service
+   ```
+
+5. **Remove the container (optional)**:
+   If you want to remove the container after stopping it, run:
+
+   ```
+   docker rm user-auth-service
+   ```
+## Using Kubernetes
   - Deploy: `kubectl apply -f kubernetes/deployment.yaml`
 
 ## Technologies Used
