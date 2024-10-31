@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package quest;
+
+service QuestService {
+    rpc GetQuestInfo (QuestRequest) returns (QuestResponse);
+    rpc GetAllQuests (QuestListRequest) returns (QuestListResponse);
+}
+
+message QuestRequest {
+    string quest_name = 1;
+}
+
+message QuestListRequest {
+    // No fields needed for retrieving all quests
+}
+
+message Reward {
+    int32 reward_id = 1;
+    string reward_name = 2;
+    string reward_item = 3;
+    int32 reward_qty = 4;
+}
+
+message QuestResponse {
+    int32 quest_id = 1;
+    string name = 2;
+    int32 streak = 3;
+    int32 duplication = 4;
+    bool auto_claim = 5;
+    Reward rewards = 6;
+}
+
+message QuestListResponse {
+    repeated QuestResponse quests = 1;
+}

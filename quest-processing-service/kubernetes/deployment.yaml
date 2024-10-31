@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quest-processing-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quest-processing-service
+  template:
+    metadata:
+      labels:
+        app: quest-processing-service
+    spec:
+      containers:
+      - name: quest-processing-service
+        image: <YOUR_DOCKER_IMAGE>
+        ports:
+        - containerPort: 8003
+        envFrom:
+          - configMapRef:
+              name: app-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DATABASE_URL: "sqlite:///./test.db"
+  SECRET_KEY: "your-secret-key"

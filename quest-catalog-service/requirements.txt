@@ -1,0 +1,10 @@
+fastapi
+httpx
+uvicorn
+python-dotenv  # for reading environment variables
+sqlalchemy     # for database ORM
+python-jose
+passlib
+pydantic-settings
+psycopg2-binary
+grpcio-tools

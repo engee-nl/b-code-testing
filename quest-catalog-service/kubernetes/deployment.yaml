@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quest-catalog-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quest-catalog-service
+  template:
+    metadata:
+      labels:
+        app: quest-catalog-service
+    spec:
+      containers:
+      - name: quest-catalog-service
+        image: <YOUR_DOCKER_IMAGE>
+        ports:
+        - containerPort: 8002
+        envFrom:
+          - configMapRef:
+              name: app-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DATABASE_URL: "sqlite:///./test.db"
+  SECRET_KEY: "your-secret-key"
