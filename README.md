@@ -32,6 +32,8 @@ Currently, for the demo all projects are implemented on a single server (AWS EC2
 
 The database schema was updated with two new tables: **user_rewards** and **events**. The **user_rewards** table enables efficient retrieval of users' reward history with a single query, eliminating the need for a left join. The **events** table records key actions, such as quest completions and reward claims, allowing the state to be reconstructed from historical events.
 
+Additional columns were also added to the tables; further details can be provided during the technical review if needed.
+
 ### Back-end : User Authentication Service
 
 Service for user registration and login
