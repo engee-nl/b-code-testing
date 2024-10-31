@@ -1,6 +1,5 @@
 # User Authentication Service
 
-## Summary
 The User Authentication Service is responsible for managing user registration, authentication, and JWT token issuance. 
 It is designed to securely handle user credentials and issue tokens for authenticated sessions.
 
