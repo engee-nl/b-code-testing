@@ -124,14 +124,14 @@ This project can be easily run using Docker. Follow the steps below to get start
    To stop the container, use the following command:
 
    ```
-   docker stop quest-processing-service
+   docker stop quest-catalog-service
    ```
 
 5. **Remove the container (optional)**:
    If you want to remove the container after stopping it, run:
 
    ```
-   docker rm quest-processing-service
+   docker rm quest-catalog-service
    ```
 
 ## Using Kubernetes
