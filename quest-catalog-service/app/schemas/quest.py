@@ -9,5 +9,5 @@ class QuestResponse(BaseModel):
     streak: int
     duplication: int
     name: str
-    description: str | None
+    description: str
     rewards: RewardResponse
