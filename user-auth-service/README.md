@@ -22,13 +22,13 @@ user-auth-service/
 │ │ └── security.py          # Authentication methods
 │ ├── db/
 │ │ ├── base.py              # Database base declaration 
-│ │ ├── models.py            # Database models 
+│ │ ├── models.py            # Database models for users
 │ │ └── session.py           # Database session setup (with pooling) 
 │ ├── schemas/ 
 │ │    └── user.py           # Pydantic schemas for request/response validation 
 │ ├── services/ 
-│ │    └── user_service.py   # Service functions for user operations 
-│ └── main.py                # Main FastAPI app 
+│ │    └── user_service.py   # Service layer logic for user operations 
+│ └── main.py                # Main FastAPI app entry point
 ├── kubernetes/ 
 │ ├── deployment.yaml        # Kubernetes deployment configuration 
 │ └── service.yaml           # Kubernetes service configuration 
@@ -198,7 +198,7 @@ AWS ECR allows you to store your Docker images, which can be deployed on ECS or 
 ## Scaling Recommendations
 **Horizontal Scaling**:
    - Use a Load Balancer (e.g., AWS ALB or Nginx) to distribute requests across multiple instances of each service.
-   - Use ECS or EKS Fargate to scale automatically (Configure Service Autoscaling).
+   - Use ECS or EKS Fargate to scale automatically (Configure Service Autoscaling in ECS control panel for example).
    
 **Caching**:
    - Implement caching (e.g., Redis) in the Quest Catalog Service to store frequently requested quest data.
@@ -208,9 +208,9 @@ AWS ECR allows you to store your Docker images, which can be deployed on ECS or 
 
 
 ## Technologies Used
-- FastAPI
-- PostgreSQL (or other SQL database)
-- Docker
-- Kubernetes
-- JWT for token-based authentication
-- SQLAlchemy
+- FastAPI: Web framework for building APIs.
+- SQLAlchemy: ORM for interacting with the PostgreSQL database.
+- PostgreSQL: Database for storing user quest and reward data.
+- JWT: Token-based authentication to secure access.
+- Docker: Containerization for consistent deployment.
+- Kubernetes: Orchestrates containerized services for scalability.
