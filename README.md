@@ -13,6 +13,10 @@ If I had access to the necessary servers and time, I would set up the architectu
 
 ![Server architecture](server-architecture.drawio.png)
 
+
+## Updated Database Schema
+
+
 ## Back-end : User Authentication Service
 
 Service for user registration and login

@@ -11,7 +11,31 @@ It is designed to securely handle user credentials and issue tokens for authenti
 - Token-based Authentication: Protects endpoints and verifies tokens for secure user access.
 
 ## Project Structure
-
+```plaintext 
+user-auth-service/ 
+├── app/ 
+│ ├── api/ 
+│ │ └── v1/ 
+│ │   └── endpoints/ 
+│ │     └── auth.py          # Authentication endpoints for user signup and login 
+│ ├── core/ 
+│ │ ├── config.py            # Configuration settings 
+│ │ └── security.py          # Authentication methods
+│ ├── db/
+│ │ ├── base.py              # Database base declaration 
+│ │ ├── models.py            # Database models 
+│ │ └── session.py           # Database session setup (with pooling) 
+│ ├── schemas/ 
+│ │    └── user.py           # Pydantic schemas for request/response validation 
+│ ├── services/ 
+│ │    └── user_service.py   # Service functions for user operations 
+│ └── main.py                # Main FastAPI app 
+├── Dockerfile               # Docker setup for the service 
+├── requirements.txt         # Project dependencies 
+└── kubernetes/ 
+  ├── deployment.yaml        # Kubernetes deployment configuration 
+  └── service.yaml           # Kubernetes service configuration 
+```
 
 ## Installation
 
