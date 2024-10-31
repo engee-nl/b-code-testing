@@ -53,13 +53,13 @@ quest-catalog-service/
 
 2. Create a virtual environment and activate it:
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate
    ```
 
 3. Install the required packages:
    ```bash
-   pip install -r app/requirements.txt
+   pip install -r requirements.txt
    ```
 
 4. Create a `.env` file with your environment variables:
