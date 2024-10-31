@@ -10,17 +10,17 @@ If I had access to the necessary servers and time, I would set up the architectu
 
 ![Server architecture](server-architecture.drawio.png)
 
-# Back-end : User Authentication Service
+## Back-end : User Authentication Service
 
-The back-end of this project is built using Python's FastAPI framework.
+Service for user registration and login
 
-# Back-end : Quest Catalog Service
+## Back-end : Quest Catalog Service
 
-The back-end of this project is built using Python's FastAPI framework.
+Service for getting quest information
 
-# Back-end : Quest Processing Service
+## Back-end : Quest Processing Service
 
-The back-end of this project is built using Python's FastAPI framework.
+Service for tracking user quests and managing rewards
 
 ## Contributing
 

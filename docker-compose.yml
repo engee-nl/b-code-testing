@@ -4,7 +4,7 @@ services:
   user_auth_service:
     image: your-dockerhub-username/user-auth-service:latest
     ports:
-      - "8000:80"
+      - "8001:80"
     environment:
       - DATABASE_URL=sqlite:///./user_auth.db
       - SECRET_KEY=supersecretkey123
@@ -12,7 +12,7 @@ services:
   quest_catalog_service:
     image: your-dockerhub-username/quest-catalog-service:latest
     ports:
-      - "8001:80"
+      - "8002:80"
     environment:
       - DATABASE_URL=sqlite:///./quest_catalog.db
       - SECRET_KEY=supersecretkey123
@@ -20,7 +20,7 @@ services:
   quest_processing_service:
     image: your-dockerhub-username/quest-processing-service:latest
     ports:
-      - "8002:80"
+      - "8003:80"
     environment:
       - DATABASE_URL=sqlite:///./quest_processing.db
       - SECRET_KEY=supersecretkey123
