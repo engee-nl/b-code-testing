@@ -165,28 +165,26 @@ Deploying this project with Kubernetes allows you to manage and scale the applic
 
 ## Using AWS ECR and Deploying with ECS or EKS
 AWS ECR allows you to store your Docker images, which can be deployed on ECS or EKS for scalable management. Here is how to deploy:
-### **Push the Docker image to ECR**:
-   - **Authenticate** Docker to your ECR registry:
+#### **Push the Docker image to ECR**:
+   1. **Authenticate** Docker to your ECR registry:
    ```
    aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<region>.amazonaws.com
    ```
-   - **Tag the Docker image** with your ECR repository URI:
+   2. **Tag the Docker image** with your ECR repository URI:
    ```
    docker tag task.io:latest <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
    ```
-   - **Push the image** to your ECR repository:
+   3. **Push the image** to your ECR repository:
    ```
    docker push <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
    ```
-<br />
 
-### **Deploy the image on ECS (Elastic Container Service)**:
+#### **Deploy the image on ECS (Elastic Container Service)**:
    - **Create a new ECS task definition** or update an existing one to use the pushed image from ECR.
    - **Launch the service** in an ECS cluster and configure the desired task scaling.
 
-<br>
 
-### **Deploy on EKS (Elastic Kubernetes Service)**:
+#### **Deploy on EKS (Elastic Kubernetes Service)**:
    - Ensure the EKS cluster is configured to pull from ECR, and update the Kubernetes deployment YAML to point to the ECR image:
    ```
    image: <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
