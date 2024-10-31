@@ -85,7 +85,7 @@ To run the FastAPI application, use the following command:
 uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload --timeout-keep-alive 180
 ```
 
-## Using Docker (not recommended)
+## Using Docker
 
 This project can be easily run using Docker. Follow the steps below to get started:
 
@@ -120,7 +120,7 @@ This project can be easily run using Docker. Follow the steps below to get start
    docker rm user-auth-service
    ```
 
-## Using Kubernetes (not recommended)
+## Using Kubernetes
 
 Deploying this project with Kubernetes allows you to manage and scale the application efficiently. Follow these steps to get started:
 
@@ -165,6 +165,34 @@ Deploying this project with Kubernetes allows you to manage and scale the applic
 
 ## Using AWS ECR and Deploying with ECS or EKS (recommended)
 AWS ECR allows you to store your Docker images, which can be deployed on ECS or EKS for scalable management. Here is how to deploy:
+1. **Push the Docker image to ECR**:
+   - **Authenticate** Docker to your ECR registry:
+   ```
+   aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<region>.amazonaws.com
+   ```
+   - **Tag the Docker image** with your ECR repository URI:
+   ```
+   docker tag task.io:latest <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
+   ```
+   - **Push the image** to your ECR repository:
+   ```
+   docker push <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
+   ```
+
+**Deploy the image on ECS (Elastic Container Service)**:
+   - **Create a new ECS task definition** or update an existing one to use the pushed image from ECR.
+   - **Launch the service** in an ECS cluster and configure the desired task scaling.
+
+**Deploy on EKS (Elastic Kubernetes Service)**:
+   - Ensure the EKS cluster is configured to pull from ECR, and update the Kubernetes deployment YAML to point to the ECR image:
+   ```
+   image: <aws-account-id>.dkr.ecr.<region>.amazonaws.com/task.io:latest
+   ```
+   - **Apply the updated configuration**:
+   ```
+   kubectl apply -f kubernetes/deployment.yaml
+   ```
+
 
 ## Technologies Used
 - FastAPI
