@@ -195,6 +195,16 @@ AWS ECR allows you to store your Docker images, which can be deployed on ECS or 
    ```
 
 
+## Scaling Recommendations
+   **Horizontal Scaling**:
+   - Use a Load Balancer (e.g., AWS ALB or Nginx) to distribute requests across multiple instances of each service.
+   - Use ECS or EKS Fargate to scale automatically (Configure Service Autoscaling).
+   **Caching**:
+   - Implement caching (e.g., Redis) in the Quest Catalog Service to store frequently requested quest data.
+   **Database Connection Pooling**:
+   - Set up SQLAlchemy connection pooling to manage database connections under high traffic. See **user-auth-service/app/db/session.py** file for example.
+
+
 ## Technologies Used
 - FastAPI
 - PostgreSQL (or other SQL database)
