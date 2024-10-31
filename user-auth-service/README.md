@@ -70,12 +70,12 @@ user-auth-service/
 - **`POST /api/v1/auth/signup`**
   - **Description**: Register a new user.
   - **Request Body**: `{ "username": "string", "password": "string" }`
-  - **Response**: Returns a success message and JWT token if registration is successful.
+  - **Response**: `{"user_id": integer, "user_name": "string", "token": "string"}`
 
 - **`POST /api/v1/auth/signin`**
   - **Description**: Authenticate a user and issue a JWT token.
   - **Request Body**: `{ "username": "string", "password": "string" }`
-  - **Response**: Returns a JWT token and user details if login is successful.
+  - **Response**: `{"user_id": integer, "user_name": "string", "token": "string"}`
 
 ## Running the Application
 

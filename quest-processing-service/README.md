@@ -76,17 +76,17 @@ quest-processing-service/
 - **`POST /api/v1/track/signin`**
   - **Description**: Tracks user sign-ins to record progress on sign-in quests.
   - **Request Body**: `N/A`
-  - **Response**: { "message": "Sign-in tracked", "status": "string" }
+  - **Response**: `{ "message": "Sign-in tracked", "status": "string" }`
 
 - **`POST /api/v1/track/signup`**
   - **Description**: Tracks user sign-ups to record progress on sign-up quests.
   - **Request Body**: `N/A`
-  - **Response**: { "message": "Sign-up tracked", "status": "string" }
+  - **Response**: `{ "message": "Sign-up tracked", "status": "string" }`
 
 - **`POST /api/v1/track/claim_reward`**
   - **Description**: Claims a reward for completed quests, ensuring eligibility based on quest settings.
   - **Request Body**: `{ "quest_name": "string" }`
-  - **Response**: { "message": "Reward claimed successfully", "reward": { "item": "string", "qty": "int" } }
+  - **Response**: `{ "message": "Reward claimed successfully", "reward": { "item": "string", "qty": "int" } }`
   
 - **Protected Routes**:
   - All routes require a Bearer JWT token in the `Authorization` header in the format: `Bearer <token>`.
