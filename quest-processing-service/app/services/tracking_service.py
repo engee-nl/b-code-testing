@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
-from app.db.models import UserQuest, QuestStatus, UserReward
+from app.db.models import UserQuest, QuestStatus, UserReward, Event
 from app.grpc.quest_client import get_quest_info, get_all_quests
+from datetime import datetime
 
 def track_sign_in(db: Session, user_id: int, quest_name: str):
     # User can only have a quest one time [1:1]
@@ -23,12 +24,14 @@ def track_sign_in(db: Session, user_id: int, quest_name: str):
     # Increment progress if the quest has not been fully completed
     if user_quest.status == QuestStatus.NOT_CLAIMED:
         user_quest.progress_streak += 1
+        log_event(db, user_id, "quest_completed_once", { "quest_id" : quest.quest_id, "progress_streak" : user_quest.progress_streak })
 
         # Check if progress meets the quest streak requirement
         if user_quest.progress_streak >= quest.streak:
             user_quest.status = QuestStatus.CLAIMED
             user_quest.progress_streak = 0
             user_quest.completion_count += 1
+            log_event(db, user_id, "quest_completed_all", { "quest_id" : quest.quest_id, "completion_count" : user_quest.completion_count })
 
             if user_quest.completion_count < quest.duplication:
                 user_quest.status = QuestStatus.NOT_CLAIMED
@@ -107,4 +110,11 @@ def claim_reward(db: Session, user_id: int, quest_name: str):
     db.add(new_reward)
     db.commit()
 
+    log_event(db, user_id, "reward_claimed", { "quest_id" : quest.quest_id, "reward_id" : quest_reward.reward_id, "reward_name" : quest_reward.reward_name, "reward_item" : quest_reward.reward_item, "reward_qty" : quest_reward.reward_qty })
     return {"message": "Reward claimed successfully", "reward": {"item": new_reward.reward_item, "qty": new_reward.reward_qty}}
+
+def log_event(db: Session, user_id: int, event_type: str, data: dict):
+    event = Event(user_id=user_id, event_type=event_type, data=data, date=datetime.utcnow())
+    db.add(event)
+    db.commit()
+    return event

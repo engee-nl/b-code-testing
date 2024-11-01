@@ -32,6 +32,8 @@ user-auth-service/
 ├── kubernetes/ 
 │ ├── deployment.yaml        # Kubernetes deployment configuration 
 │ └── service.yaml           # Kubernetes service configuration 
+├── tests/ 
+│ └── test_auth.yaml         # Unit test example
 ├── Dockerfile               # Docker setup for the service 
 ├── requirements.txt         # Project dependencies 
 └── .env                     # Environment variables file 

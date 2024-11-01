@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Enum, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, Enum, DateTime, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.functions import now
 from enum import Enum as PyEnum
@@ -26,4 +26,12 @@ class UserReward(Base):
     reward_name = Column(String)  
     reward_item = Column(String)  # "gold" or "diamond"
     reward_qty = Column(Integer)  # Quantity of the reward
+    date = Column(DateTime(timezone=True), server_default=now())
+
+class Event(Base):
+    __tablename__ = "events"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, index=True)
+    event_type = Column(String, index=True)  # e.g., "quest_completed", "reward_claimed"
+    data = Column(JSON)                      # Additional data, such as quest ID, reward details
     date = Column(DateTime(timezone=True), server_default=now())
