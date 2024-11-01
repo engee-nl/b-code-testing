@@ -4,7 +4,7 @@ from app.grpc.quest_client import get_quest_info, get_all_quests
 from datetime import datetime
 
 def track_sign_in(db: Session, user_id: int, quest_name: str):
-    # User can only have a quest one time [1:1]
+    # Syncing quest and user
     sync_quest_and_user(db, user_id)
 
     # Fetch quest details from the Quest Catalog Service
@@ -40,6 +40,9 @@ def track_sign_in(db: Session, user_id: int, quest_name: str):
     return user_quest.status
 
 def track_sign_up(db: Session, user_id: int, quest_name: str):
+    # Syncing quest and user
+    sync_quest_and_user(db, user_id)
+    
     return None
 
 def sync_quest_and_user(db: Session, user_id: int):
