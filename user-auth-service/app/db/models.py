@@ -17,3 +17,14 @@ class User(Base):
     gold = Column(Integer, default=0)
     diamond = Column(Integer, default=0)
     status = Column(Enum(UserStatus), default=UserStatus.NEW)
+
+'''
+Event Source : Log events
+class Event(Base):
+    __tablename__ = "events"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, index=True)
+    event_type = Column(String, index=True)  # e.g., "sign_up", "sign_in"
+    data = Column(JSON)                      # Additional data if available
+    date = Column(DateTime(timezone=True), server_default=now())
+'''

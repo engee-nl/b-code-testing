@@ -33,6 +33,8 @@ async def signup(user: UserCreate, db: Session = Depends(get_session_local)):
             )
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+        
+    # TO DO : log sign up event with log_event(); 
 
     return {"user_id": user.user_id, "user_name": user.user_name, "token": access_token}
 
@@ -57,8 +59,19 @@ async def signin(user: UserLogin, db: Session = Depends(get_session_local)):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+    # TO DO : log sign in event with log_event(); 
+
     return {"user_id": db_user.user_id, "user_name": db_user.user_name, "token": access_token}
 
 # def notifyQuestProcessingService(user_id: int):
+
+'''
+TO DO : Event Source Implementation
+def log_event(db: Session, user_id: int, event_type: str, data: dict):
+    event = Event(user_id=user_id, event_type=event_type, data=data, date=datetime.utcnow())
+    db.add(event)
+    db.commit()
+    return event
+'''
 
     
