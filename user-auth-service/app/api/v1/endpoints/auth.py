@@ -23,19 +23,14 @@ async def signup(user: UserCreate, db: Session = Depends(get_session_local)):
     access_token = create_access_token(data={"sub": user.user_name, "user_id": user.user_id})
 
     # Notify Quest Processing Service about sign-up event
+    # TO DO : Circuit Breaker Pattern
     try:
         async with httpx.AsyncClient() as client:
-            response = await client.post(
+            await client.post(
                 f"{settings.QUEST_PROC_SERVICE_URL}/signup",
                 json={"user_id": user.user_id},
                 headers={"Authorization": f"Bearer {access_token}"}
             )
-            #response.raise_for_status()
-        #return respons
-    except RequestError as e:
-        print(f"Connection error occurred: {e}")
-    except httpx.HTTPStatusError as e:
-        print(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
@@ -51,19 +46,14 @@ async def signin(user: UserLogin, db: Session = Depends(get_session_local)):
     access_token = create_access_token(data={"sub": db_user.user_name, "user_id": db_user.user_id})
 
     # Notify Quest Processing Service about sign-in event
+    # TO DO : Circuit Breaker Pattern
     try:
         async with httpx.AsyncClient() as client:
-            response = await client.post(
+            await client.post(
                 f"{settings.QUEST_PROC_SERVICE_URL}/signin",
                 json={"user_id": db_user.user_id},
                 headers={"Authorization": f"Bearer {access_token}"}
             )
-            #response.raise_for_status()
-        #return response
-    except RequestError as e:
-        print(f"Connection error occurred: {e}")
-    except httpx.HTTPStatusError as e:
-        print(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
