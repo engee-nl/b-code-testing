@@ -42,7 +42,7 @@ def track_sign_in(db: Session, user_id: int, quest_name: str):
 def track_sign_up(db: Session, user_id: int, quest_name: str):
     # Syncing quest and user
     sync_quest_and_user(db, user_id)
-    
+
     return None
 
 def sync_quest_and_user(db: Session, user_id: int):
@@ -114,6 +114,9 @@ def claim_reward(db: Session, user_id: int, quest_name: str):
     db.commit()
 
     log_event(db, user_id, "reward_claimed", { "quest_id" : quest.quest_id, "reward_id" : quest_reward.reward_id, "reward_name" : quest_reward.reward_name, "reward_item" : quest_reward.reward_item, "reward_qty" : quest_reward.reward_qty })
+
+    # TODO Update user diamond or gold value, with gRPC or httpx (User Auth Service)
+
     return {"message": "Reward claimed successfully", "reward": {"item": new_reward.reward_item, "qty": new_reward.reward_qty}}
 
 def log_event(db: Session, user_id: int, event_type: str, data: dict):
