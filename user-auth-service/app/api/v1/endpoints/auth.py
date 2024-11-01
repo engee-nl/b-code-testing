@@ -7,6 +7,7 @@ from app.core.security import get_password_hash, create_access_token, verify_pas
 from app.services.user_service import create_user, get_user_by_username
 import httpx
 from app.core.config import settings
+from httpx import RequestError
 
 router = APIRouter()
 
@@ -22,12 +23,21 @@ async def signup(user: UserCreate, db: Session = Depends(get_session_local)):
     access_token = create_access_token(data={"sub": user.user_name, "user_id": user.user_id})
 
     # Notify Quest Processing Service about sign-up event
-    async with httpx.AsyncClient() as client:
-        await client.post(
-            f"{settings.QUEST_PROC_SERVICE_URL}/signup",
-            json={"user_id": user.user_id},
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{settings.QUEST_PROC_SERVICE_URL}/signup",
+                json={"user_id": user.user_id},
+                headers={"Authorization": f"Bearer {access_token}"}
+            )
+            response.raise_for_status()
+        return respons
+    except RequestError as e:
+        print(f"Connection error occurred: {e}")
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
     return {"user_id": user.user_id, "user_name": user.user_name, "token": access_token}
 
@@ -41,12 +51,21 @@ async def signin(user: UserLogin, db: Session = Depends(get_session_local)):
     access_token = create_access_token(data={"sub": db_user.user_name, "user_id": db_user.user_id})
 
     # Notify Quest Processing Service about sign-in event
-    async with httpx.AsyncClient() as client:
-        await client.post(
-            f"{settings.QUEST_PROC_SERVICE_URL}/signin",
-            json={"user_id": db_user.user_id},
-            headers={"Authorization": f"Bearer {access_token}"}
-        )
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{settings.QUEST_PROC_SERVICE_URL}/signin",
+                json={"user_id": db_user.user_id},
+                headers={"Authorization": f"Bearer {access_token}"}
+            )
+            response.raise_for_status()
+        return response
+    except RequestError as e:
+        print(f"Connection error occurred: {e}")
+    except httpx.HTTPStatusError as e:
+        print(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
     return {"user_id": db_user.user_id, "user_name": db_user.user_name, "token": access_token}
 
