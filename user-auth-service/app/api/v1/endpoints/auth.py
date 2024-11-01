@@ -30,8 +30,8 @@ async def signup(user: UserCreate, db: Session = Depends(get_session_local)):
                 json={"user_id": user.user_id},
                 headers={"Authorization": f"Bearer {access_token}"}
             )
-            response.raise_for_status()
-        return respons
+            #response.raise_for_status()
+        #return respons
     except RequestError as e:
         print(f"Connection error occurred: {e}")
     except httpx.HTTPStatusError as e:
@@ -58,8 +58,8 @@ async def signin(user: UserLogin, db: Session = Depends(get_session_local)):
                 json={"user_id": db_user.user_id},
                 headers={"Authorization": f"Bearer {access_token}"}
             )
-            response.raise_for_status()
-        return response
+            #response.raise_for_status()
+        #return response
     except RequestError as e:
         print(f"Connection error occurred: {e}")
     except httpx.HTTPStatusError as e:
